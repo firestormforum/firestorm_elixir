@@ -2,7 +2,7 @@
 
 ### An open-source forum engine, with an Elixir+Phoenix backend and an Elm frontend.
 
-#### A community-funded project from [DailyDrip](https://www.dailydrip.com).
+#### A community-funded project from [SmoothTerminal](https://www.smoothterminal.com).
 
 This is the Elixir backend for the [Firestorm Forum
 project](https://github.com/dailydrip/firestorm). This is a bit of a rewrite to make it a bit better
@@ -19,6 +19,10 @@ There were two primary motivations for a rewrite.
 - To switch to GraphQL for the API. When building the first version, GraphQL had a problematic
   license. Facebook has since rectified that situation, so we rebuilt it focusing on providing a
   GraphQL API.
+
+In the process, there were plenty of features that were lost. Some of these features were
+unfortunately coupled to the provided frontend. We will re-implement those features, but didn't want
+to wait to get the new release out since it's been far too long since we provided updates.
 
 ## Patrons
 
