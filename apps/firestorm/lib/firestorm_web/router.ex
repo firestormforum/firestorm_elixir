@@ -28,8 +28,9 @@ defmodule FirestormWeb.Router do
 
     forward(
       "/",
-      Absinthe.Plug,
+      Absinthe.Plug.GraphiQL,
       schema: FirestormWeb.Schema,
+      socket: FirestormWeb.UserSocket,
       json_codec: Jason
     )
   end
