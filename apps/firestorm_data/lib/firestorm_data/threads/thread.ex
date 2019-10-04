@@ -1,3 +1,7 @@
+defmodule FirestormData.Threads.Thread.TitleSlug do
+  use EctoAutoslugField.Slug, from: :title, to: :slug
+end
+
 defmodule FirestormData.Threads.Thread do
   @moduledoc """
   Schema for forum threads.
@@ -11,9 +15,12 @@ defmodule FirestormData.Threads.Thread do
     Categories.Category
   }
 
+  alias FirestormData.Threads.Thread.TitleSlug
+
   @type t :: %Thread{
           id: String.t(),
           title: String.t(),
+          slug: String.t(),
           category: Category.t() | %Ecto.Association.NotLoaded{},
           posts: [Post.t()] | %Ecto.Association.NotLoaded{},
           inserted_at: DateTime.t(),
@@ -21,6 +28,7 @@ defmodule FirestormData.Threads.Thread do
         }
   schema "firestorm_threads_threads" do
     field(:title, :string)
+    field(:slug, TitleSlug.Type)
     belongs_to(:category, Category)
     has_many(:posts, Post)
 
@@ -30,6 +38,8 @@ defmodule FirestormData.Threads.Thread do
   def changeset(%__MODULE__{} = thread, attrs \\ %{}) do
     thread
     |> cast(attrs, [:title, :category_id])
+    |> TitleSlug.maybe_generate_slug()
+    |> TitleSlug.unique_constraint()
     |> validate_required([:title, :category_id])
   end
 
