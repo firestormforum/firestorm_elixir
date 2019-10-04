@@ -29,6 +29,7 @@ defmodule FirestormData.ThreadsTest do
     attrs = %{title: "Some title", body: "First post"}
     assert {:ok, %Thread{} = thread} = create_thread(category, user, attrs)
     assert thread.title == attrs.title
+    assert thread.slug == "some-title"
     first_post = hd(thread.posts)
     assert first_post.thread_id == thread.id
     assert first_post.body == "First post"

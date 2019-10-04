@@ -5,6 +5,7 @@ defmodule FirestormWeb.Schema.ThreadsTypes do
   object :thread do
     field(:id, non_null(:id))
     field(:title, non_null(:string))
+    field(:slug, non_null(:string))
 
     field(:posts, non_null(list_of(non_null(:post)))) do
       resolve(&Resolvers.Posts.list_posts/3)

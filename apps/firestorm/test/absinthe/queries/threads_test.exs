@@ -26,6 +26,7 @@ defmodule Firestorm.Absinthe.Queries.ThreadsTest do
       thread(id: "#{thread.id}") {
         id
         title
+        slug
         posts {
           id
           body
@@ -48,6 +49,7 @@ defmodule Firestorm.Absinthe.Queries.ThreadsTest do
 
     assert returned_thread["id"] == thread.id
     assert returned_thread["title"] == thread.title
+    assert returned_thread["slug"] == "thread-title"
     assert [first_post] = returned_thread["posts"]
     assert first_post["body"] == "First post"
     assert first_post["insertedAt"]

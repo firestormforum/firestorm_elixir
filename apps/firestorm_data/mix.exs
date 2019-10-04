@@ -39,6 +39,8 @@ defmodule FirestormData.MixProject do
       {:comeonin, "~> 4.0"},
       # We want to paginate queries
       {:scrivener_ecto, "~> 2.0"},
+      # EctoAutoslugField
+      {:ecto_autoslug_field, "~> 2.0"},
       # We'd like as much type safety as we can get
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false}
     ]
