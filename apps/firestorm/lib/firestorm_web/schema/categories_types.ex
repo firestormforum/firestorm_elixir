@@ -19,6 +19,7 @@ defmodule FirestormWeb.Schema.CategoriesTypes do
   object :category do
     field(:id, non_null(:id))
     field(:title, non_null(:string))
+    field(:slug, non_null(:string))
 
     field :threads, non_null(list_of(non_null(:thread))) do
       resolve(&Resolvers.Threads.list_threads/3)
