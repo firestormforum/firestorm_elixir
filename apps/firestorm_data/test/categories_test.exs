@@ -15,6 +15,7 @@ defmodule FirestormData.CategoriesTest do
     attrs = %{title: "some title"}
     assert {:ok, %Category{} = category} = create_category(attrs)
     assert category.title == "some title"
+    assert category.slug == "some-title"
   end
 
   test "categories have many threads" do
