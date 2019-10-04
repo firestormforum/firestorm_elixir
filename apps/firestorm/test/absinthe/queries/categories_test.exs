@@ -21,6 +21,7 @@ defmodule Firestorm.Absinthe.Queries.CategoriesTest do
         entries {
           id
           title
+          slug
         }
       }
     }
@@ -51,6 +52,7 @@ defmodule Firestorm.Absinthe.Queries.CategoriesTest do
         entries {
           id
           title
+          slug
         }
       }
     }
@@ -86,9 +88,11 @@ defmodule Firestorm.Absinthe.Queries.CategoriesTest do
       category(id: "#{category.id}") {
         id
         title
+        slug
         threads {
           id
           title
+          slug
           insertedAt
           updatedAt
         }
@@ -103,9 +107,11 @@ defmodule Firestorm.Absinthe.Queries.CategoriesTest do
 
     assert returned_category["id"] == category.id
     assert returned_category["title"] == category.title
+    assert returned_category["slug"] == "some-category"
     assert [first_thread] = returned_category["threads"]
     assert first_thread["id"] == thread.id
     assert first_thread["title"] == thread.title
+    assert first_thread["slug"] == "thread-title"
     assert first_thread["insertedAt"]
     assert first_thread["updatedAt"]
   end
