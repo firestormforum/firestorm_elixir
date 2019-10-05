@@ -19,7 +19,7 @@ defmodule FirestormWeb.Admin.CategoryController do
   end
 
   def new(conn, _params) do
-    changeset = FirestormAdmin.change_category(%Category{})
+    changeset = FirestormAdmin.new_category_changeset(%Category{})
     render(conn, "new.html", changeset: changeset)
   end
 

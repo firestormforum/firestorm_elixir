@@ -153,6 +153,10 @@ defmodule Firestorm.FirestormAdmin do
     Category.changeset(category, %{})
   end
 
+  def new_category_changeset(%Category{} = category) do
+    Category.new_changeset(category, %{})
+  end
+
   defp filter_config(:categories) do
     defconfig do
       text(:title)
