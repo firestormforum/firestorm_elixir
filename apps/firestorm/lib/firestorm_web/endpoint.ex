@@ -26,6 +26,15 @@ defmodule FirestormWeb.Endpoint do
     only: ~w(css fonts images js favicon.ico robots.txt)
   )
 
+  plug(
+    Plug.Static,
+    at: "/torch",
+    from: {:torch, "priv/static"},
+    gzip: true,
+    cache_control_for_etags: "public, max-age=86400",
+    headers: [{"access-control-allow-origin", "*"}]
+  )
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do

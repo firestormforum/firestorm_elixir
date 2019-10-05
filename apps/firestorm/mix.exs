@@ -48,6 +48,7 @@ defmodule Firestorm.MixProject do
       {:absinthe_phoenix, "~> 1.4"},
       {:corsica, "~> 1.1"},
       {:ecto, "~> 3.0"},
+      {:torch, "~> 2.0"},
       {:dataloader, "~> 1.0"},
       {:gravity, "~> 1.0"},
       {:firestorm_data, in_umbrella: true}

@@ -1,0 +1,87 @@
+<section id="torch-toolbar">
+  <div class="torch-container">
+    <%= link "New Category", to: Routes.category_path(@conn, :new) %>
+  </div>
+</section>
+<section id="torch-index-content">
+  <div class="torch-container">
+    <section id="torch-filters">
+      <h3>Find Categories</h3>
+      <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
+        
+          <div class="field">
+            <label>Title</label>
+            <%= filter_select(:category, :title, @conn.params) %>
+            <%= filter_string_input(:category, :title, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Slug</label>
+            <%= filter_select(:category, :slug, @conn.params) %>
+            <%= filter_string_input(:category, :slug, @conn.params) %>
+          </div>
+        
+        
+        
+          <div class="field">
+            <label>Inserted at</label>
+            <%= filter_date_input(:category, :inserted_at, @conn.params) %>
+          </div>
+        
+          <div class="field">
+            <label>Updated at</label>
+            <%= filter_date_input(:category, :updated_at, @conn.params) %>
+          </div>
+        
+        
+        <button type="submit" class="torch-button">Search</button>
+        <%= link "Clear Filters", to: Routes.category_path(@conn, :index) %>
+      <% end %>
+
+    </section>
+
+    <section id="torch-table">
+    <%= if length(@categories) > 0 do %>
+      <table>
+        <thead>
+          <tr>
+            
+              <th><%= table_link(@conn, "Title", :title) %></th>
+            
+              <th><%= table_link(@conn, "Slug", :slug) %></th>
+            
+              <th><%= table_link(@conn, "Inserted at", :inserted_at) %></th>
+            
+              <th><%= table_link(@conn, "Updated at", :updated_at) %></th>
+            
+            <th><span>Actions</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= for category <- @categories do %>
+            <tr>
+              
+                <td><%= category.title %></td>
+              
+                <td><%= category.slug %></td>
+              
+                <td><%= category.inserted_at %></td>
+              
+                <td><%= category.updated_at %></td>
+              
+              <td class="torch-actions">
+                <span><%= link "Show", to: Routes.category_path(@conn, :show, category) %></span>
+                <span><%= link "Edit", to: Routes.category_path(@conn, :edit, category) %></span>
+                <span><%= link "Delete", to: Routes.category_path(@conn, :delete, category), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= render Torch.PaginationView, "_pagination.html", assigns %>
+    <% else %>
+      <p class="torch-no-data">No Categories match your search.</p>
+    <% end %>
+    </section>
+  </div>
+</section>
