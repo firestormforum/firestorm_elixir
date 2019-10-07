@@ -26,6 +26,7 @@
           <nav class="torch-nav">
             <a href="/admin/categories">Categories</a>
             <a href="/admin/threads">Threads</a>
+            <a href="/admin/posts">Posts</a>
           </nav>
         </div>
       </section>
