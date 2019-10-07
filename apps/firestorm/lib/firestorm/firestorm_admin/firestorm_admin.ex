@@ -9,9 +9,14 @@ defmodule Firestorm.FirestormAdmin do
   import Filtrex.Type.Config
 
   alias FirestormData.Categories.Category
+  alias FirestormData.Threads.Thread
 
   @pagination [page_size: 15]
   @pagination_distance 5
+
+  ####
+  #### Categories
+  ####
 
   @doc """
   Paginate the list of categories using filtrex
@@ -158,6 +163,158 @@ defmodule Firestorm.FirestormAdmin do
   end
 
   defp filter_config(:categories) do
+    defconfig do
+      text(:title)
+      text(:slug)
+      date(:inserted_at)
+      date(:updated_at)
+    end
+  end
+
+  ####
+  #### THREADS
+  ####
+
+  @doc """
+  Paginate the list of threads using filtrex
+  filters.
+
+  ## Examples
+
+      iex> list_threads(%{})
+      %{threads: [%Thread{}], ...}
+  """
+  @spec paginate_threads(map) :: {:ok, map} | {:error, any}
+  def paginate_threads(params \\ %{}) do
+    params =
+      params
+      |> Map.put_new("sort_direction", "desc")
+      |> Map.put_new("sort_field", "inserted_at")
+
+    {:ok, sort_direction} = Map.fetch(params, "sort_direction")
+    {:ok, sort_field} = Map.fetch(params, "sort_field")
+
+    with {:ok, filter} <- Filtrex.parse_params(filter_config(:threads), params["thread"] || %{}),
+         %Scrivener.Page{} = page <- do_paginate_threads(filter, params) do
+      {:ok,
+       %{
+         threads: page.entries,
+         page_number: page.page_number,
+         page_size: page.page_size,
+         total_pages: page.total_pages,
+         total_entries: page.total_entries,
+         distance: @pagination_distance,
+         sort_field: sort_field,
+         sort_direction: sort_direction
+       }}
+    else
+      {:error, error} -> {:error, error}
+      error -> {:error, error}
+    end
+  end
+
+  defp do_paginate_threads(filter, params) do
+    Thread
+    |> Filtrex.query(filter)
+    |> order_by(^sort(params))
+    |> paginate(Repo, params, @pagination)
+  end
+
+  @doc """
+  Returns the list of threads.
+
+  ## Examples
+
+      iex> list_threads()
+      [%Thread{}, ...]
+
+  """
+  def list_threads do
+    Repo.all(Thread)
+  end
+
+  @doc """
+  Gets a single thread.
+
+  Raises `Ecto.NoResultsError` if the Thread does not exist.
+
+  ## Examples
+
+      iex> get_thread!(123)
+      %Thread{}
+
+      iex> get_thread!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_thread!(id), do: Repo.get!(Thread, id)
+
+  @doc """
+  Creates a thread.
+
+  ## Examples
+
+      iex> create_thread(%{field: value})
+      {:ok, %Thread{}}
+
+      iex> create_thread(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_thread(attrs \\ %{}) do
+    %Thread{}
+    |> Thread.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a thread.
+
+  ## Examples
+
+      iex> update_thread(thread, %{field: new_value})
+      {:ok, %Thread{}}
+
+      iex> update_thread(thread, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_thread(%Thread{} = thread, attrs) do
+    thread
+    |> Thread.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Thread.
+
+  ## Examples
+
+      iex> delete_thread(thread)
+      {:ok, %Thread{}}
+
+      iex> delete_thread(thread)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_thread(%Thread{} = thread) do
+    Repo.delete(thread)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking thread changes.
+
+  ## Examples
+
+      iex> change_thread(thread)
+      %Ecto.Changeset{source: %Thread{}}
+
+  """
+  def change_thread(%Thread{} = thread) do
+    Thread.changeset(thread, %{})
+  end
+
+  defp filter_config(:threads) do
     defconfig do
       text(:title)
       text(:slug)

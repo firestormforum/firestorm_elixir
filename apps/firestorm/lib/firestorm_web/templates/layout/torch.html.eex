@@ -24,7 +24,8 @@
             </a>
           </div>
           <nav class="torch-nav">
-            <!-- nav links here -->
+            <a href="/admin/categories">Categories</a>
+            <a href="/admin/threads">Threads</a>
           </nav>
         </div>
       </section>

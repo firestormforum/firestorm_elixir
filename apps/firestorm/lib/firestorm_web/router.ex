@@ -47,6 +47,7 @@ defmodule FirestormWeb.Router do
   scope "/admin", FirestormWeb.Admin do
     pipe_through(:admin)
     resources("/categories", CategoryController)
+    resources("/threads", ThreadController)
   end
 
   # Other scopes may use custom stacks.
