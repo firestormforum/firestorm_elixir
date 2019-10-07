@@ -45,6 +45,8 @@ defmodule Firestorm.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4"},
+      {:faker, "~> 0.10"},
+      {:ex_machina, "~> 2.3", only: :test},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_phoenix, "~> 1.4"},
       {:corsica, "~> 1.1"},
