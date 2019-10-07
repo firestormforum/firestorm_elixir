@@ -35,6 +35,21 @@ defmodule FirestormWeb.Router do
     )
   end
 
+  pipeline :admin do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_flash)
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    # plug(FirestormWeb.Plug.EnsureAdmin)
+  end
+
+  scope "/admin", FirestormWeb.Admin do
+    pipe_through(:admin)
+    resources("/categories", CategoryController)
+    resources("/threads", ThreadController)
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", FirestormWeb do
   #   pipe_through :api

@@ -32,6 +32,11 @@ defmodule FirestormData.Categories.Category do
     timestamps()
   end
 
+  def new_changeset(%__MODULE__{} = category, attrs \\ %{}) do
+    category
+    |> cast(attrs, [:title])
+  end
+
   def changeset(%__MODULE__{} = category, attrs \\ %{}) do
     category
     |> cast(attrs, [:title])

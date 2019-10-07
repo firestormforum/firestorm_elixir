@@ -23,7 +23,7 @@ defmodule Firestorm.MixProject do
   def application do
     [
       mod: {Firestorm.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :phoenix_ecto]
     ]
   end
 
@@ -37,6 +37,7 @@ defmodule Firestorm.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.4.0"},
+      {:phoenix_ecto, "~> 4.0.0"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -44,10 +45,13 @@ defmodule Firestorm.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:absinthe, "~> 1.4"},
+      {:faker, "~> 0.10"},
+      {:ex_machina, "~> 2.3", only: :test},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_phoenix, "~> 1.4"},
       {:corsica, "~> 1.1"},
       {:ecto, "~> 3.0"},
+      {:torch, "~> 2.0"},
       {:dataloader, "~> 1.0"},
       {:gravity, "~> 1.0"},
       {:firestorm_data, in_umbrella: true}
