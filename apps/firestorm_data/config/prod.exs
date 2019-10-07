@@ -1,8 +1,8 @@
 use Mix.Config
 
 config :firestorm_data, FirestormData.Repo,
-  hostname: "localhost",
-  username: "${DB_USER}",
-  password: "${DB_PASSWORD}",
-  database: "${DB_NAME}",
-  pool_size: 10
+  adapter: Ecto.Adapters.Postgres,
+  url: {:system, "DATABASE_URL"},
+  database: "",
+  ssl: true,
+  pool_size: 2
