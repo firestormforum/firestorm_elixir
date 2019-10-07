@@ -8,15 +8,21 @@
     <% end %>
 
     <div class="torch-form-group">
-      <%= label f, :title %>
-      <%= text_input f, :title %>
-      <%= error_tag f, :title %>
+      <%= label f, :body %>
+      <%= textarea f, :body %>
+      <%= error_tag f, :body %>
     </div>
 
     <div class="torch-form-group">
-      <%= label f, :slug %>
-      <%= text_input f, :slug %>
-      <%= error_tag f, :slug %>
+      <%= label f, :thread_id %>
+      <%= textarea f, :thread_id %>
+      <%= error_tag f, :thread_id %>
+    </div>
+
+    <div class="torch-form-group">
+      <%= label f, :user_id %>
+      <%= textarea f, :user_id %>
+      <%= error_tag f, :user_id %>
     </div>
 
     <div class="torch-submit-form">

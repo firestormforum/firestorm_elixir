@@ -25,18 +25,6 @@
       <%= error_tag f, :category_id %>
     </div>
 
-    <div class="torch-form-group">
-      <%= label f, :inserted_at %>
-      <%= datetime_select f, :inserted_at %>
-      <%= error_tag f, :inserted_at %>
-    </div>
-
-    <div class="torch-form-group">
-      <%= label f, :updated_at %>
-      <%= datetime_select f, :updated_at %>
-      <%= error_tag f, :updated_at %>
-    </div>
-
     <div class="torch-submit-form">
       <%= submit "Submit", class: "torch-submit-button" %>
     </div>
