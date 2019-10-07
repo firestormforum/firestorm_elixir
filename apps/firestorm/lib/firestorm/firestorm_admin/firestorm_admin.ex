@@ -230,7 +230,9 @@ defmodule Firestorm.FirestormAdmin do
 
   """
   def list_threads do
-    Repo.all(Thread)
+    Thread
+    |> Repo.all()
+    |> Repo.preload([:category])
   end
 
   @doc """
@@ -247,7 +249,11 @@ defmodule Firestorm.FirestormAdmin do
       ** (Ecto.NoResultsError)
 
   """
-  def get_thread!(id), do: Repo.get!(Thread, id)
+  def get_thread!(id) do
+    Thread
+    |> Repo.get!(id)
+    |> Repo.preload([:category])
+  end
 
   @doc """
   Creates a thread.

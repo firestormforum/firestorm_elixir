@@ -8,8 +8,7 @@ defmodule Firestorm.Factory do
 
   def category_factory do
     %Category{
-      title: Faker.Lorem.word(),
-      threads: []
+      title: Faker.Lorem.word()
     }
   end
 
