@@ -1,7 +1,6 @@
 ![Firestorm](./assets/images/firestorm-logo.png)
 
-[![Build Status](https://semaphoreci.com/api/v1/dailydrip/firestorm_elixir/branches/dependabot-hex-credo-tw-1-1/badge.svg)](https://semaphoreci.com/dailydrip/firestorm_elixir)
-
+[![Build Status](https://semaphoreci.com/api/v1/dailydrip/firestorm_elixir/branches/master/badge.svg)](https://semaphoreci.com/dailydrip/firestorm_elixir)
 
 ### An open-source forum engine, with an Elixir+Phoenix backend and an Elm frontend.
 
