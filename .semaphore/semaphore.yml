@@ -13,6 +13,14 @@ blocks:
       jobs:
         - name: compile
           commands:
+            -  git clone https://github.com/elixir-lang/elixir.git
+            - cd elixir
+            - git checkout v1.9.1
+            - make compile
+            - rm -rf .git
+            - make
+            - sudo make install
+            - cd ..
             - elixir --version
             - mix local.rebar --force
             - mix local.hex --force
