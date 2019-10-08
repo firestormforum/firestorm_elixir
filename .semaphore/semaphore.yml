@@ -7,8 +7,22 @@ agent:
 blocks:
   - name: Unit tests
     task:
+      env_vars:
+        - name: DATABASE_POSTGRESQL_USERNAME
+          value: postgres
+        - name: DATABASE_POSTGRESQL_PASSWORD
+          value: postgres
+        - name: MIX_ENV
+          value: test
+        - name: DATABASE_POSTGRESQL_USERNAME
+          value: postgres
+        - name: DATABASE_POSTGRESQL_PASSWORD
+          value: postgres
+        - name: MIX_ENV
+          value: test
       prologue:
         commands:
+          - sem-service start postgres
           - checkout
       jobs:
         - name: compile
@@ -18,6 +32,6 @@ blocks:
             - mix local.rebar --force
             - mix local.hex --force
             - mix deps.get --only test
-            - MIX_ENV=test mix deps.get
-            - MIX_ENV=test mix compile --warnings-as-errors
+            - mix deps.get
+            - mix compile --warnings-as-errors
             - mix test
