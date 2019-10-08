@@ -1,0 +1,30 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Unit tests
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: compile
+          commands:
+            -  git clone https://github.com/elixir-lang/elixir.git
+            - cd elixir
+            - git checkout v1.9.1
+            - make compile
+            - rm -rf .git
+            - make
+            - sudo make install
+            - cd ..
+            - elixir --version
+            - mix local.rebar --force
+            - mix local.hex --force
+            - mix deps.get --only test
+            - MIX_ENV=test mix deps.get
+            - MIX_ENV=test mix compile --warnings-as-errors
+            - mix test
