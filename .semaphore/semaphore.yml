@@ -14,12 +14,9 @@ blocks:
         - name: mix local.rebar --force
           commands:
             - mix local.rebar --force
-        - name: mix local.hex --force
-          commands:
             - mix local.hex --force
-        - name: mix deps.get --only test
-          commands:
             - mix deps.get --only test
+            - MIX_ENV=test mix deps.get
   - name: Unit tests
     task:
       prologue:
@@ -28,7 +25,6 @@ blocks:
       jobs:
         - name: compile
           commands:
-            - MIX_ENV=test mix deps.get
             - MIX_ENV=test mix compile --warnings-as-errors
         - name: tests
           commands:
