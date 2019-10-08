@@ -28,6 +28,7 @@ blocks:
       jobs:
         - name: compile
           commands:
+            - MIX_ENV=test mix deps.get
             - MIX_ENV=test mix compile --warnings-as-errors
         - name: tests
           commands:
