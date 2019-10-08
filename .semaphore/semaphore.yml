@@ -1,0 +1,23 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Unit tests
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: compile
+          commands:
+            - sem-version elixir 1.9.1
+            - elixir --version
+            - mix local.rebar --force
+            - mix local.hex --force
+            - mix deps.get --only test
+            - MIX_ENV=test mix deps.get
+            - MIX_ENV=test mix compile --warnings-as-errors
+            - mix test
