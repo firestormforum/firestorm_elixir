@@ -2,7 +2,6 @@ defmodule FirestormWeb.CategoryControllerTest do
   use FirestormWeb.ConnCase
   import Firestorm.Factory
 
-  alias Firestorm.FirestormAdmin
   alias FirestormWeb.Router.Helpers, as: Routes
 
   @create_attrs %{

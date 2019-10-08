@@ -1,7 +1,6 @@
 defmodule FirestormWeb.PostControllerTest do
   use FirestormWeb.ConnCase
 
-  alias Firestorm.FirestormAdmin
   import Firestorm.Factory
 
   alias FirestormWeb.Router.Helpers, as: Routes

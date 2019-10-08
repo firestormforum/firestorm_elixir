@@ -2,7 +2,6 @@ defmodule FirestormWeb.ThreadControllerTest do
   use FirestormWeb.ConnCase
   import Firestorm.Factory
 
-  alias Firestorm.FirestormAdmin
   alias FirestormWeb.Router.Helpers, as: Routes
 
   @create_attrs %{
@@ -12,12 +11,7 @@ defmodule FirestormWeb.ThreadControllerTest do
     category_id: "",
     updated_at: ~N[2010-04-17 14:00:00]
   }
-  @update_attrs %{
-    inserted_at: ~N[2011-05-18 15:01:01],
-    slug: "some updated slug",
-    title: "some updated title",
-    updated_at: ~N[2011-05-18 15:01:01]
-  }
+
   @invalid_attrs %{inserted_at: nil, slug: nil, title: nil, updated_at: nil}
 
   describe "index" do
