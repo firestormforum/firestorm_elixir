@@ -1,0 +1,34 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Setup
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: mix local.rebar --force
+          commands:
+            - mix local.rebar --force
+        - name: mix local.hex --force
+          commands:
+            - mix local.hex --force
+        - name: mix deps.get --only test
+          commands:
+            - mix deps.get --only test
+  - name: Unit tests
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: compile
+          commands:
+            - MIX_ENV=test mix compile --warnings-as-errors
+        - name: tests
+          commands:
+            - mix test
