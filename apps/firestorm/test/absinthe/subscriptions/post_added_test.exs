@@ -8,7 +8,6 @@ defmodule Firestorm.Absinthe.Subscriptions.PostAddedTest do
 
   @category_title "Some category"
   @thread_title "Some thread"
-  @first_post_body "First post"
   @body "Second post"
 
   setup %{user: user} do

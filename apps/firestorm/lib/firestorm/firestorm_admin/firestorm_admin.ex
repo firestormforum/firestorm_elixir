@@ -163,15 +163,6 @@ defmodule Firestorm.FirestormAdmin do
     Category.new_changeset(category, %{})
   end
 
-  defp filter_config(:categories) do
-    defconfig do
-      text(:title)
-      text(:slug)
-      date(:inserted_at)
-      date(:updated_at)
-    end
-  end
-
   ####
   #### THREADS
   ####
@@ -321,15 +312,6 @@ defmodule Firestorm.FirestormAdmin do
     Thread.changeset(thread, %{})
   end
 
-  defp filter_config(:threads) do
-    defconfig do
-      text(:title)
-      text(:slug)
-      date(:inserted_at)
-      date(:updated_at)
-    end
-  end
-
   ####
   #### POSTS
   ####
@@ -471,6 +453,24 @@ defmodule Firestorm.FirestormAdmin do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
+  end
+
+  defp filter_config(:categories) do
+    defconfig do
+      text(:title)
+      text(:slug)
+      date(:inserted_at)
+      date(:updated_at)
+    end
+  end
+
+  defp filter_config(:threads) do
+    defconfig do
+      text(:title)
+      text(:slug)
+      date(:inserted_at)
+      date(:updated_at)
+    end
   end
 
   defp filter_config(:posts) do

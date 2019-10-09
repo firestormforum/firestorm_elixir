@@ -8,26 +8,26 @@
     <section id="torch-filters">
       <h3>Find Posts</h3>
       <%= form_tag @conn.request_path, method: :get, id: "torch-filters-form" do %>
-        
+
           <div class="field">
             <label>Body</label>
             <%= filter_select(:post, :body, @conn.params) %>
-            <%= filter_text_input(:post, :body, @conn.params) %>
+            <%= filter_string_input(:post, :body, @conn.params) %>
           </div>
-        
-        
-        
+
+
+
           <div class="field">
             <label>Inserted at</label>
             <%= filter_date_input(:post, :inserted_at, @conn.params) %>
           </div>
-        
+
           <div class="field">
             <label>Updated at</label>
             <%= filter_date_input(:post, :updated_at, @conn.params) %>
           </div>
-        
-        
+
+
         <button type="submit" class="torch-button">Search</button>
         <%= link "Clear Filters", to: Routes.post_path(@conn, :index) %>
       <% end %>
@@ -39,26 +39,26 @@
       <table>
         <thead>
           <tr>
-            
+
               <th><%= table_link(@conn, "Body", :body) %></th>
-            
+
               <th><%= table_link(@conn, "Inserted at", :inserted_at) %></th>
-            
+
               <th><%= table_link(@conn, "Updated at", :updated_at) %></th>
-            
+
             <th><span>Actions</span></th>
           </tr>
         </thead>
         <tbody>
           <%= for post <- @posts do %>
             <tr>
-              
+
                 <td><%= post.body %></td>
-              
+
                 <td><%= post.inserted_at %></td>
-              
+
                 <td><%= post.updated_at %></td>
-              
+
               <td class="torch-actions">
                 <span><%= link "Show", to: Routes.post_path(@conn, :show, post) %></span>
                 <span><%= link "Edit", to: Routes.post_path(@conn, :edit, post) %></span>
