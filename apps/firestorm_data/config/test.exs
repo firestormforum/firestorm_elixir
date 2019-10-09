@@ -1,6 +1,9 @@
 use Mix.Config
 
 config :firestorm_data, FirestormData.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DATABASE_POSTGRESQL_USERNAME"),
+  password: System.get_env("DATABASE_POSTGRESQL_PASSWORD"),
   database: "firestorm_data_repo_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox,

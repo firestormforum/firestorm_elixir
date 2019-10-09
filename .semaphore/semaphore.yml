@@ -11,13 +11,9 @@ blocks:
         - name: DATABASE_POSTGRESQL_USERNAME
           value: postgres
         - name: DATABASE_POSTGRESQL_PASSWORD
-          value: postgres
+          value: ""
         - name: MIX_ENV
           value: test
-        - name: DATABASE_POSTGRESQL_USERNAME
-          value: postgres
-        - name: DATABASE_POSTGRESQL_PASSWORD
-          value: postgres
         - name: MIX_ENV
           value: test
       prologue:
