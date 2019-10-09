@@ -49,6 +49,7 @@ defmodule FirestormWeb.Router do
     resources("/categories", CategoryController)
     resources("/threads", ThreadController)
     resources("/posts", PostController)
+    resources("/users", UserController)
   end
 
   # Other scopes may use custom stacks.
