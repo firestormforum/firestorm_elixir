@@ -21,6 +21,10 @@ defmodule FirestormWeb.Router do
     pipe_through(:browser)
 
     get("/", PageController, :index)
+    get("/login", AuthController, :login)
+    post("/authenticate", AuthController, :authenticate)
+    get("/logout", AuthController, :logout)
+    get("/forgot_password/:token", AuthController, :forgot_password_verification)
   end
 
   scope "/graphql" do
@@ -41,7 +45,7 @@ defmodule FirestormWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    # plug(FirestormWeb.Plug.EnsureAdmin)
+    plug(FirestormWeb.Plug.EnsureAdmin)
   end
 
   scope "/admin", FirestormWeb.Admin do

@@ -1,0 +1,12 @@
+
+<div class="container centered">
+  <a href="http://phoenixframework.org/" class="phx-logo">
+    <img src="<%= Routes.static_path(@conn, "/images/firestorm-logo.png") %>" alt="Phoenix Framework Logo"/>
+  </a>
+  <h2>Firestorm Admin Login</h2>
+  <%= form_for @conn, Routes.auth_path(@conn, :authenticate), fn f -> %>
+    <%= text_input f, :email , placeholder: "Email", type: "email"%>
+    <%= password_input f, :password, placeholder: "Password", type: "password" %>
+    <%= submit "Submit" %>
+  <% end %>
+</div>
