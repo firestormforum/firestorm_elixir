@@ -1,0 +1,40 @@
+:root {
+  --primary-color: #DB3440;
+  --background-color: #fff;
+}
+
+section#torch-account-info {
+  background-color: var(--primary-color);
+}
+
+section#torch-nav .torch-nav a.active {
+  border-color: var(--primary-color);
+}
+
+section#torch-nav .torch-logo a h3 {
+  color: var(--primary-color);
+}
+
+section#torch-nav .torch-logo a:before {
+  background-image: url(/images/firestorm-logo.png);
+}
+
+section#torch-table table td a {
+  color: var(--primary-color);
+}
+
+section#torch-filters a {
+  color: var(--primary-color);
+}
+
+.color-gray {
+  color: #4A4A4A !important;
+}
+
+.torch-actions {
+  text-align: center;
+}
+
+.centered {
+  text-align: center;
+}

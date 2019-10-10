@@ -10,6 +10,7 @@ defmodule FirestormData.Users.User do
           email: String.t(),
           name: String.t(),
           username: String.t(),
+          admin: boolean(),
           password_hash: String.t(),
           password: nil | String.t(),
           inserted_at: DateTime.t(),
@@ -19,6 +20,7 @@ defmodule FirestormData.Users.User do
   schema "firestorm_users_users" do
     field(:email, :string)
     field(:name, :string)
+    field(:admin, :boolean)
     field(:username, :string)
     field(:password_hash, :string)
     field(:password, :string, virtual: true)
@@ -27,7 +29,7 @@ defmodule FirestormData.Users.User do
   end
 
   @required_fields ~w(username)a
-  @optional_fields ~w(email name)a
+  @optional_fields ~w(email name admin)a
 
   def changeset(%__MODULE__{} = user, attrs \\ %{}) do
     user

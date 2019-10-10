@@ -15,6 +15,8 @@ defmodule FirestormWeb.UserControllerTest do
   }
   @invalid_attrs %{email: nil, name: nil, username: nil}
 
+  @moduletag :logged_in_admin
+
   describe "index" do
     test "lists all users", %{conn: conn} do
       conn = get(conn, Routes.user_path(conn, :index))

@@ -12,6 +12,7 @@ defmodule Firestorm.Factory do
     %User{
       name: Faker.Name.name(),
       username: Faker.Name.name(),
+      admin: false,
       email: sequence(:email, &"email-#{&1}@example.com")
     }
   end
