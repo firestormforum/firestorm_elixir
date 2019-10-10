@@ -17,6 +17,8 @@ defmodule FirestormWeb.PostControllerTest do
   }
   @invalid_attrs %{body: nil, inserted_at: nil, updated_at: nil}
 
+  @moduletag :logged_in_admin
+
   describe "index" do
     test "lists all posts", %{conn: conn} do
       conn = get(conn, Routes.post_path(conn, :index))

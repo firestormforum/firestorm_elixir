@@ -18,6 +18,8 @@ defmodule FirestormWeb.CategoryControllerTest do
   }
   @invalid_attrs %{inserted_at: nil, slug: nil, title: nil, updated_at: nil}
 
+  @moduletag :logged_in_admin
+
   describe "index" do
     test "lists all categories", %{conn: conn} do
       conn = get(conn, Routes.category_path(conn, :index))

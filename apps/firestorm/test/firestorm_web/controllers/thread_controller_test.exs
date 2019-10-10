@@ -14,6 +14,8 @@ defmodule FirestormWeb.ThreadControllerTest do
 
   @invalid_attrs %{inserted_at: nil, slug: nil, title: nil, updated_at: nil}
 
+  @moduletag :logged_in_admin
+
   describe "index" do
     test "lists all threads", %{conn: conn} do
       conn = get(conn, Routes.thread_path(conn, :index))
