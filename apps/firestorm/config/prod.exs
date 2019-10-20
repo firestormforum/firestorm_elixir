@@ -22,7 +22,8 @@ config :logger, level: :info
 config :firestorm_data, FirestormData.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  ssl: true
+  ssl: true,
+  pool_size: 2
 
 # ## SSL Support
 #
