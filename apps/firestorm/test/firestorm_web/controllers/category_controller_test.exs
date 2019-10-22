@@ -2,7 +2,6 @@ defmodule FirestormWeb.CategoryControllerTest do
   use FirestormWeb.ConnCase
   import Firestorm.Factory
 
-  alias Firestorm.FirestormAdmin
   alias FirestormWeb.Router.Helpers, as: Routes
 
   @create_attrs %{
@@ -18,6 +17,8 @@ defmodule FirestormWeb.CategoryControllerTest do
     updated_at: ~N[2011-05-18 15:01:01]
   }
   @invalid_attrs %{inserted_at: nil, slug: nil, title: nil, updated_at: nil}
+
+  @moduletag :logged_in_admin
 
   describe "index" do
     test "lists all categories", %{conn: conn} do

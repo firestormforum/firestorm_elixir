@@ -1,0 +1,35 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Unit tests
+    task:
+      env_vars:
+        - name: DATABASE_POSTGRESQL_USERNAME
+          value: postgres
+        - name: DATABASE_POSTGRESQL_PASSWORD
+          value: ""
+        - name: MIX_ENV
+          value: test
+        - name: MIX_ENV
+          value: test
+      prologue:
+        commands:
+          - sem-service start postgres
+          - checkout
+      jobs:
+        - name: compile
+          commands:
+            - sem-version elixir 1.9.1
+            - elixir --version
+            - mix local.hex --force
+            - mix local.rebar --force
+            - createdb firestorm_data_repo_test -h 0.0.0.0 -U $DATABASE_POSTGRESQL_USERNAME
+            - mix deps.get
+            - mix ecto.create
+            - mix ecto.migrate
+            - mix compile --warnings-as-errors
+            - mix test

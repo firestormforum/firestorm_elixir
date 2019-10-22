@@ -14,6 +14,9 @@ defmodule FirestormWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  import Firestorm.Factory
+  import Plug.Test
+  import Plug.Conn
 
   using do
     quote do
@@ -33,6 +36,22 @@ defmodule FirestormWeb.ConnCase do
       Ecto.Adapters.SQL.Sandbox.mode(FirestormData.Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    conn = Phoenix.ConnTest.build_conn()
+
+    %{user: user, conn: conn} =
+      if tags[:logged_in_admin] do
+        user = insert(:user, admin: true)
+
+        conn =
+          conn
+          |> init_test_session(%{})
+          |> put_session(:current_user_id, user.id)
+
+        %{user: user, conn: conn}
+      else
+        %{user: nil, conn: conn}
+      end
+
+    {:ok, conn: conn, user: user}
   end
 end
