@@ -27,11 +27,17 @@ defmodule Firestorm.Absinthe.Queries.ThreadsTest do
         id
         title
         slug
+        category {
+          id
+        }
         posts {
           id
           body
           insertedAt
           updatedAt
+          thread {
+            id
+          }
           user {
             id
             name
