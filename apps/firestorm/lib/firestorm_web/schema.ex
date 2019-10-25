@@ -16,6 +16,7 @@ defmodule FirestormWeb.Schema do
     loader =
       Dataloader.new()
       |> Dataloader.add_source(FirestormData.Posts.Post, FirestormWeb.Loaders.Posts.data())
+      |> Dataloader.add_source(FirestormData.Threads.Thread, FirestormWeb.Loaders.Threads.data())
 
     Map.put(ctx, :loader, loader)
   end
